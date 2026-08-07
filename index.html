@@ -78,7 +78,7 @@
     .bio-toggle { display: none; }
 
     .projects-intro {
-      padding: clamp(92px, 9vw, 140px) 0 clamp(48px, 5vw, 78px);
+      padding: clamp(54px, 5.5vw, 86px) 0 clamp(42px, 4.5vw, 66px);
     }
     .projects-heading {
       max-width: 1280px;
@@ -156,19 +156,23 @@
       border-left: 1px solid var(--line);
     }
     .work-metric {
-      min-height: 88px;
-      padding: 8px 14px;
+      min-height: 96px;
+      padding: 10px 14px;
       border-right: 1px solid var(--line);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 7px;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
     }
     .work-metric:last-child { border-right: 0; }
     .work-metric strong {
-      font-size: clamp(24px, 2.1vw, 34px);
-      line-height: .95;
-      letter-spacing: -.055em;
+      display: block;
+      font-size: clamp(30px, 2.5vw, 42px);
+      line-height: .9;
+      letter-spacing: -.065em;
+      font-weight: 700;
       white-space: nowrap;
     }
     .work-metric span {
@@ -176,7 +180,9 @@
       line-height: 1.25;
       letter-spacing: .1em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: #555550;
+      font-weight: 700;
+      text-align: center;
     }
     .work-card-toggle {
       width: 54px;
@@ -269,7 +275,7 @@
     }
 
     @media (max-width: 600px) {
-      #about { padding-top: 18px; padding-bottom: 58px; }
+      #about { padding-top: 18px; padding-bottom: 24px; }
       #about .about-copy h2 {
         font-size: clamp(31px, 8vw, 44px);
         line-height: 1.04;
@@ -346,7 +352,7 @@
         transition: transform .35s ease;
       }
       .about-bio-collapse.expanded .bio-toggle svg { transform: rotate(180deg); }
-      .projects-intro { padding: 72px 0 42px; }
+      .projects-intro { padding: 28px 0 34px; }
       .projects-heading {
         font-size: clamp(31px, 8vw, 44px);
         line-height: 1.04;
@@ -383,10 +389,10 @@
         padding-top: 18px;
       }
       .work-metric {
-        min-height: 74px;
-        padding: 4px 7px;
+        min-height: 82px;
+        padding: 6px 5px;
       }
-      .work-metric strong { font-size: 20px; }
+      .work-metric strong { font-size: 23px; }
       .work-metric span { font-size: 7px; }
       .work-card-detail {
         grid-template-columns: 1fr;
@@ -502,7 +508,7 @@
     </section>
 
     <section class="projects-intro shell reveal" id="projects">
-      <h2 class="projects-heading">My Projects</h2>
+      <h2 class="projects-heading">What I’m Building</h2>
     </section>
 
     <section class="projects-list shell reveal" aria-label="Daniel Susina projects">
@@ -544,15 +550,15 @@
       <details class="work-card interactive">
         <summary>
           <div class="work-card-main">
-            <h3>AI Studios <span style="font-weight:400">by Teenwear</span></h3>
-            <p class="work-card-subtitle">A Teenwear project focused on using AI in creative production and brand content.</p>
+            <h3>AI Try-on</h3>
+            <p class="work-card-subtitle">A Teenwear AI project. More details coming soon.</p>
           </div>
           <div></div>
           <span class="work-card-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
         </summary>
         <div class="work-card-detail">
           <span class="work-card-detail-label">About the project</span>
-          <p>More details and examples from AI Studios will be added here.</p>
+          <p>More details and examples from AI Try-on will be added here.</p>
         </div>
       </details>
 
