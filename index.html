@@ -295,6 +295,106 @@
       height: 100%;
       border: 0;
     }
+    .startup-section {
+      background: var(--bg);
+      color: var(--ink);
+      padding: clamp(90px, 11vw, 170px) 0 clamp(86px, 10vw, 150px);
+    }
+    .startup-inner {
+      text-align: center;
+    }
+    .startup-eyebrow {
+      margin-bottom: 24px;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .startup-heading {
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: clamp(42px, 6vw, 92px);
+      line-height: .98;
+      letter-spacing: -.06em;
+      font-weight: 400;
+    }
+    .startup-heading strong {
+      font-weight: 700;
+    }
+    .startup-copy {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+      gap: clamp(24px, 4vw, 60px);
+      max-width: 980px;
+      margin: clamp(42px, 5vw, 72px) auto 0;
+      padding-top: clamp(28px, 3vw, 42px);
+      border-top: 1px solid var(--line);
+      text-align: left;
+    }
+    .startup-copy p {
+      font-size: clamp(20px, 1.55vw, 25px);
+      line-height: 1.38;
+      letter-spacing: -.03em;
+      color: #30302d;
+    }
+    .startup-copy strong {
+      color: var(--ink);
+      font-weight: 700;
+    }
+    .startup-contact {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: clamp(42px, 5vw, 70px);
+    }
+    .startup-linkedin {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--ink);
+      color: #fff;
+      border: 1px solid var(--ink);
+      transition: transform .25s ease, background .25s ease, color .25s ease;
+    }
+    .startup-linkedin:hover {
+      transform: translateY(-3px);
+      background: var(--accent);
+      color: var(--ink);
+    }
+    .startup-linkedin svg {
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
+    }
+    .startup-email {
+      min-height: 62px;
+      padding: 0 24px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 16px;
+      font-size: clamp(17px, 1.3vw, 21px);
+      letter-spacing: -.02em;
+      transition: background .25s ease, color .25s ease;
+    }
+    .startup-email:hover {
+      background: var(--ink);
+      color: #fff;
+    }
+    .startup-email svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
     @media (max-width: 900px) {
       .work-card summary { grid-template-columns: 1fr 54px; }
       .work-card-metrics {
@@ -451,6 +551,34 @@
         line-height: .96;
       }
       .podcast-video { border-radius: 20px; }
+      .startup-section { padding: 72px 0 96px; }
+      .startup-eyebrow { margin-bottom: 18px; }
+      .startup-heading {
+        font-size: clamp(36px, 10vw, 52px);
+        line-height: 1;
+      }
+      .startup-copy {
+        margin-top: 38px;
+        padding-top: 26px;
+        gap: 22px;
+      }
+      .startup-copy p {
+        font-size: 21px;
+        line-height: 1.38;
+      }
+      .startup-contact {
+        margin-top: 38px;
+        gap: 12px;
+      }
+      .startup-linkedin {
+        width: 56px;
+        height: 56px;
+      }
+      .startup-email {
+        min-height: 56px;
+        padding: 0 18px;
+        font-size: 17px;
+      }
     }
   </style>
 </head>
@@ -463,6 +591,7 @@
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#podcast">Podcast</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
@@ -612,6 +741,26 @@
         <h2 class="podcast-heading">Watch a <strong>podcast</strong> with me.</h2>
         <div class="podcast-video">
           <iframe src="https://www.youtube.com/embed/gZ9pYWdjXY4?si=XSYJ6p_-mCxK0P5w" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="startup-section" id="contact">
+      <div class="shell startup-inner reveal">
+        <p class="startup-eyebrow">Open to opportunities</p>
+        <h2 class="startup-heading">I’m looking for opportunities to help ambitious <strong>technology startups.</strong></h2>
+        <div class="startup-copy">
+          <p>I’m at my best when I can combine <strong>product thinking, growth, brand, AI and systems</strong> with hands-on execution. I like taking messy problems, understanding what actually matters and turning them into something practical that moves the business forward.</p>
+          <p>I learn fast, take ownership and prefer being close to the real work. I’m interested in teams where I can contribute beyond a single box, help build, test, improve and scale, and work with people who care more about execution than titles.</p>
+        </div>
+        <div class="startup-contact">
+          <a class="startup-linkedin interactive" href="https://www.linkedin.com/in/daniel-susina/" target="_blank" rel="noreferrer" aria-label="Daniel Susina on LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.7H3.4V19h3.1V8.7Zm.2-3.2C6.7 4.5 6 3.8 4.9 3.8S3 4.5 3 5.5s.8 1.8 1.9 1.8 1.8-.8 1.8-1.8ZM20.9 13.1c0-3.1-1.7-4.7-4-4.7-1.8 0-2.7 1-3.1 1.7V8.7h-3.1V19h3.1v-5.1c0-1.3.3-2.7 2-2.7s1.8 1.6 1.8 2.8v5h3.1l.2-5.9Z"/></svg>
+          </a>
+          <a class="startup-email interactive" href="mailto:daniel@teenwear.eu">
+            <span>daniel@teenwear.eu</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"/><path d="m14 7 5 5-5 5"/></svg>
+          </a>
         </div>
       </div>
     </section>
