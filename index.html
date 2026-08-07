@@ -18,6 +18,9 @@
     .hero::before {
       background: linear-gradient(90deg, rgba(0,0,0,.74) 0%, rgba(0,0,0,.42) 48%, rgba(0,0,0,.16) 78%), linear-gradient(0deg, rgba(0,0,0,.68) 0%, rgba(0,0,0,.12) 62%) !important;
     }
+    .hero-linkedin {
+      display: none;
+    }
     .marquee { margin-bottom: 0; transform: none !important; }
     #about { padding-top: var(--pad); }
     #about .about-layout { display: block; }
@@ -74,6 +77,23 @@
       #about .about-copy h2 {
         font-size: clamp(31px, 8vw, 44px);
         line-height: 1.04;
+      }
+      .hero-linkedin {
+        width: 54px;
+        height: 54px;
+        border: 1px solid rgba(255,255,255,.65);
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: rgba(255,255,255,.08);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+      .hero-linkedin svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
       }
       .about-photo {
         width: 100%;
@@ -136,6 +156,9 @@
           </div>
 
           <div class="hero-meta">
+            <a class="hero-linkedin interactive" href="https://www.linkedin.com/in/daniel-susina/" target="_blank" rel="noreferrer" aria-label="Daniel Susina on LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.7H3.4V19h3.1V8.7Zm.2-3.2C6.7 4.5 6 3.8 4.9 3.8S3 4.5 3 5.5s.8 1.8 1.9 1.8 1.8-.8 1.8-1.8ZM20.9 13.1c0-3.1-1.7-4.7-4-4.7-1.8 0-2.7 1-3.1 1.7V8.7h-3.1V19h3.1v-5.1c0-1.3.3-2.7 2-2.7s1.8 1.6 1.8 2.8v5h3.1l.2-5.9Z"/></svg>
+            </a>
             <span>Founder of Teenwear / 2026</span>
             <a class="hero-scroll interactive" href="#about" aria-label="Scroll to about">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16"/><path d="m6.5 14.5 5.5 5.5 5.5-5.5"/></svg>
@@ -167,7 +190,7 @@
     <section class="section shell" id="about">
       <div class="about-layout reveal">
         <div class="about-copy">
-          <h2>I’ve generated over <strong class="revenue-highlight">€1,000,000</strong> in cumulative revenue since I started building businesses.</h2>
+          <h2>I’ve generated over <strong class="revenue-highlight">€1,000,000</strong> in cumulative revenue since I started building businesses. All by age 21.</h2>
 
           <div class="about-photo">
             <img src="https://cdn.shopify.com/s/files/1/0685/9060/0494/files/WhatsApp_Image_2026-08-07_at_13.52.52.jpg?v=1786103903" alt="Daniel Susina" loading="lazy" />
@@ -240,7 +263,7 @@
     <div class="footer-links reveal">
       <a class="interactive" href="mailto:hello@danielsusina.com">Email</a>
       <a class="interactive" href="#">Instagram</a>
-      <a class="interactive" href="#">LinkedIn</a>
+      <a class="interactive" href="https://www.linkedin.com/in/daniel-susina/" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
     <div class="footer-bottom"><span>Daniel Susina © 2026</span><span>Built from scratch / No template</span></div>
   </footer>
