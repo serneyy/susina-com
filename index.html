@@ -14,15 +14,30 @@
     #about .about-copy h2 {
       max-width: 1280px;
       margin: 0;
-      font-size: clamp(42px, 6vw, 92px);
-      line-height: .95;
-      letter-spacing: -.06em;
+      font-size: clamp(38px, 4.4vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      font-weight: 400;
+    }
+    #about .revenue-highlight {
+      display: block;
+      margin: 6px 0 10px;
+      font-size: clamp(88px, 14vw, 220px);
+      line-height: .82;
+      letter-spacing: -.085em;
+      font-weight: 700;
+      color: var(--ink);
     }
     @media (max-width: 600px) {
-      #about { padding-top: 34px; }
+      #about { padding-top: 30px; }
       #about .about-copy h2 {
-        font-size: clamp(38px, 10.5vw, 58px);
-        line-height: .98;
+        font-size: clamp(31px, 8vw, 44px);
+        line-height: 1.04;
+      }
+      #about .revenue-highlight {
+        margin: 8px 0 12px;
+        font-size: clamp(92px, 27vw, 136px);
+        line-height: .8;
       }
     }
   </style>
@@ -100,7 +115,7 @@
     <section class="section shell" id="about">
       <div class="about-layout reveal">
         <div class="about-copy">
-          <h2>By 21, I had generated over €1 million in cumulative revenue since I started building businesses.</h2>
+          <h2>I’ve generated over <strong class="revenue-highlight">€1M+</strong> in cumulative revenue since I started building businesses.</h2>
         </div>
       </div>
     </section>
