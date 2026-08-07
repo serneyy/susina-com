@@ -87,6 +87,9 @@
       font-size: clamp(38px, 4.4vw, 68px);
       line-height: 1.02;
       letter-spacing: -.05em;
+      font-weight: 400;
+    }
+    .projects-heading strong {
       font-weight: 700;
     }
     .projects-list {
@@ -187,10 +190,12 @@
     .work-card-toggle {
       width: 54px;
       height: 54px;
-      border: 1px solid var(--line);
+      border: 1px solid var(--ink);
       border-radius: 50%;
       display: grid;
       place-items: center;
+      background: var(--accent);
+      color: var(--ink);
       transition: transform .35s ease, background .25s ease, border-color .25s ease;
     }
     .work-card-toggle svg {
@@ -508,7 +513,7 @@
     </section>
 
     <section class="projects-intro shell reveal" id="projects">
-      <h2 class="projects-heading">What I’m Building</h2>
+      <h2 class="projects-heading">What I’m <strong>Building</strong></h2>
     </section>
 
     <section class="projects-list shell reveal" aria-label="Daniel Susina projects">
