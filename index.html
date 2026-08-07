@@ -82,6 +82,30 @@
     }
     .mobile-menu a.active { background: var(--accent); }
     .mobile-menu a:active { transform: scale(.94); }
+    .language-toggle {
+      width: 68px;
+      height: 52px;
+      padding: 0;
+      border: 0;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: rgba(11,11,11,.055);
+      color: #161614;
+      cursor: pointer;
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: .05em;
+      transition: background .22s ease, transform .22s ease;
+    }
+    .language-toggle:hover { background: rgba(11,11,11,.1); }
+    .language-toggle:active { transform: scale(.94); }
+    .language-toggle .lang-option { opacity: .32; transition: opacity .2s ease; }
+    .language-toggle .lang-option.active { opacity: 1; }
+    .language-toggle .lang-divider { opacity: .22; }
     @media (hover:hover) and (pointer:fine) {
       .mobile-menu a:not(.active):hover { background: rgba(11,11,11,.07); }
     }
@@ -487,6 +511,9 @@
       }
     }
     @media (max-width: 600px) {
+      .mobile-menu { gap: 4px; padding: 6px; }
+      .mobile-menu a { width: 46px; height: 46px; border-radius: 15px; }
+      .language-toggle { width: 58px; height: 46px; border-radius: 15px; font-size: 9px; gap: 4px; }
       #about { padding-top: 46px; padding-bottom: 24px; }
       #about .about-copy h2 {
         font-size: clamp(31px, 8vw, 44px);
@@ -689,6 +716,11 @@
     <a href="#contact" aria-label="Collab">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.5 14.5 7 17a3 3 0 0 1-4.2-4.2l3.5-3.5a3 3 0 0 1 4.2 0"/><path d="m14.5 9.5 2.5-2.5a3 3 0 0 1 4.2 4.2l-3.5 3.5a3 3 0 0 1-4.2 0"/><path d="m8.5 15.5 7-7"/></svg>
     </a>
+    <button class="language-toggle interactive" id="languageToggle" type="button" aria-label="Switch language to Slovak">
+      <span class="lang-option active" data-lang-option="en">EN</span>
+      <span class="lang-divider">/</span>
+      <span class="lang-option" data-lang-option="sk">SK</span>
+    </button>
   </nav>
 
   <main>
@@ -889,11 +921,134 @@
 
     const bioCollapse = document.getElementById('aboutBioCollapse');
     const bioToggle = document.getElementById('bioToggle');
+    let currentLanguage = 'en';
+
+    const translations = {
+      en: {
+        title: 'Daniel Susina | Ecommerce & AI Entrepreneur',
+        heroTitle: '<span><b>Hi, I’m</b></span><span><b>Daniel.</b></span>',
+        heroDescription: 'I’m a 21-year-old entrepreneur building in ecommerce and AI, focused on brand, growth, systems and ideas that can scale.',
+        heroMeta: 'Founder of Teenwear / 2026',
+        aboutHeading: 'I’ve generated over <strong class="revenue-highlight">€800,000</strong> in cumulative revenue since I started building businesses.',
+        bioOne: 'When I was <strong>12</strong>, I started designing websites simply because I loved making things on the internet. I had no idea it would become the foundation of my future career. Before long, I was building sites for my <strong>first clients</strong> and earning my <strong>first money</strong> from something I had taught myself.',
+        bioTwo: 'At <strong>18</strong>, I launched <strong>Teenwear.eu</strong> because I wanted to see if I could build an ecommerce store of my own. What started as a small experiment turned into a <strong>global fashion business</strong>. In its first full year, Teenwear generated <strong>€93K in revenue</strong>, then grew to <strong>€205K+ in 2024</strong> and <strong>€431K in 2025</strong>. Along the way, I learned the entire business by doing it myself, from <strong>sourcing and brand strategy to marketing, operations, customer experience and growth systems</strong>. Today, I’m still scaling Teenwear while building new products at the intersection of <strong>ecommerce and AI</strong>.',
+        projectsHeading: 'What I’m <strong>Building</strong>',
+        teenwearSubtitle: 'A Gen-Z fashion business I launched at 18 that grew from a small ecommerce experiment into an international brand.',
+        metrics: ['2025 revenue', 'Net profit', 'Net margin', 'YoY growth'],
+        teenwearLabel: 'The story',
+        teenwearStory: '<strong>Teenwear started in December 2022 with a simple question: could I build an ecommerce brand from scratch?</strong> I launched it at 18 and ended up learning every part of the business hands-on, from sourcing and product selection to brand, performance marketing, customer experience, logistics and operations. Revenue reached <strong>€93K in its first full year, €205K+ in 2024 and €431K in 2025</strong>. More than the numbers, Teenwear became the real-world operating system behind everything I know about building, scaling and improving an ecommerce business.',
+        sizooSubtitle: 'Teenwear’s AI sizing assistant that turns height, weight and real return feedback into smarter size recommendations.',
+        sizooLabel: 'How it works',
+        sizooStory: '<strong>Sizoo is part of Teenwear and was built to solve one of fashion ecommerce’s most frustrating problems: choosing the wrong size.</strong> A customer enters their height and weight, and the AI recommends the size most likely to fit. But it goes beyond a static size chart. Sizoo is connected to Teenwear’s return portal, where it follows customer feedback and return reasons and uses that real-world data to make future recommendations more precise. The result is a smarter sizing experience that helps customers choose with more confidence and is designed to <strong>reduce size-related returns</strong>.',
+        tryonSubtitle: 'An in-house AI experience that lets customers see Teenwear products on themselves before buying.',
+        tryonLabel: 'How it works',
+        tryonStory: '<strong>AI Try-on turns a product page into something personal.</strong> A customer uploads a photo, chooses a Teenwear product and our AI generates a visual of how that piece could look on them. We developed the experience in-house to remove some of the imagination gap from online fashion. Instead of trying to picture an outfit on a model, the customer can picture it on themselves. That makes the decision easier, builds more confidence before checkout and <strong>supports sales by helping customers connect with the product before they buy it</strong>.',
+        matchlyStatus: 'In progress',
+        podcastHeading: 'Watch a <strong>podcast</strong> with me.',
+        startupHeading: 'Building something ambitious? I’m always open to <strong>helping.</strong>',
+        startupNote: 'If you’re building a technology startup with real potential and think I could add value, <strong>reach out.</strong> I enjoy helping founders solve practical problems, shape products, improve growth and build systems that scale. I’m happy to advise, collaborate or jump in where it makes sense.',
+        tags: ['Product & UX', 'Growth', 'AI & Automation', 'Ecommerce', 'Brand & Systems'],
+        nav: ['Home', 'About', 'Projects', 'Podcast', 'Collab'],
+        languageLabel: 'Switch language to Slovak',
+        showMore: 'Show more about Daniel',
+        showLess: 'Show less about Daniel'
+      },
+      sk: {
+        title: 'Daniel Susina | Ecommerce & AI podnikateľ',
+        heroTitle: '<span><b>Ahoj, som</b></span><span><b>Daniel.</b></span>',
+        heroDescription: 'Som 21-ročný podnikateľ, ktorý buduje projekty v ecommerce a AI. Zameriavam sa na značku, rast, systémy a nápady, ktoré sa dajú škálovať.',
+        heroMeta: 'Zakladateľ Teenwear / 2026',
+        aboutHeading: 'Od začiatku podnikania som vytvoril kumulatívne tržby viac ako <strong class="revenue-highlight">€800,000</strong>.',
+        bioOne: 'Keď som mal <strong>12 rokov</strong>, začal som navrhovať webstránky jednoducho preto, že ma bavilo tvoriť veci na internete. Vtedy som netušil, že sa z toho raz stane základ mojej kariéry. Netrvalo dlho a robil som weby pre svojich <strong>prvých klientov</strong> a zarábal <strong>prvé peniaze</strong> na niečom, čo som sa naučil úplne sám.',
+        bioTwo: 'V <strong>18 rokoch</strong> som spustil <strong>Teenwear.eu</strong>, pretože som chcel zistiť, či dokážem vybudovať vlastný ecommerce. Z malého experimentu sa postupne stal <strong>medzinárodný fashion biznis</strong>. V prvom celom roku Teenwear dosiahol <strong>tržby €93K</strong>, následne <strong>€205K+ v roku 2024</strong> a <strong>€431K v roku 2025</strong>. Popri tom som sa celý biznis učil priamo v praxi, od <strong>sourcingu a brand stratégie až po marketing, operácie, zákaznícku skúsenosť a systémy rastu</strong>. Dnes Teenwear ďalej škálujem a zároveň budujem nové produkty na pomedzí <strong>ecommerce a AI</strong>.',
+        projectsHeading: 'Na čom <strong>pracujem</strong>',
+        teenwearSubtitle: 'Gen-Z fashion biznis, ktorý som spustil v 18 a z malého ecommerce experimentu vyrástol na medzinárodnú značku.',
+        metrics: ['Tržby 2025', 'Čistý zisk', 'Čistá marža', 'Medziročný rast'],
+        teenwearLabel: 'Príbeh',
+        teenwearStory: '<strong>Teenwear vznikol v decembri 2022 z jednoduchej otázky: dokážem vybudovať ecommerce značku úplne od nuly?</strong> Spustil som ho v 18 rokoch a veľmi rýchlo som sa ocitol v každej časti biznisu, od sourcingu a výberu produktov až po značku, performance marketing, zákaznícku skúsenosť, logistiku a operácie. Tržby dosiahli <strong>€93K v prvom celom roku, €205K+ v roku 2024 a €431K v roku 2025</strong>. Teenwear však pre mňa nie je len o číslach. Je to reálny systém, na ktorom som sa naučil, ako ecommerce vybudovať, škálovať a každý deň zlepšovať.',
+        sizooSubtitle: 'AI sizing asistent Teenwearu, ktorý premieňa výšku, váhu a reálny feedback z vrátení na presnejšie odporúčania veľkostí.',
+        sizooLabel: 'Ako to funguje',
+        sizooStory: '<strong>Sizoo je súčasť Teenwearu a vzniklo preto, aby riešilo jeden z najotravnejších problémov fashion ecommerce: zlú veľkosť.</strong> Zákazník zadá svoju výšku a váhu a AI mu odporučí veľkosť, ktorá mu s najväčšou pravdepodobnosťou sadne. Nie je to však iba inteligentnejšia size guide. Sizoo je napojené na Teenwear return portal, sleduje feedback zákazníkov aj dôvody vrátenia a tieto reálne dáta využíva na ďalšie spresňovanie odporúčaní. Výsledkom je jednoduchší výber veľkosti, väčšia istota pred nákupom a systém navrhnutý tak, aby <strong>znižoval počet vrátení kvôli nesprávnej veľkosti</strong>.',
+        tryonSubtitle: 'Naše vlastné AI riešenie, vďaka ktorému si zákazník môže pozrieť Teenwear produkt priamo na sebe ešte pred nákupom.',
+        tryonLabel: 'Ako to funguje',
+        tryonStory: '<strong>AI Try-on mení obyčajnú produktovú stránku na osobný zážitok.</strong> Zákazník nahrá svoju fotku, vyberie si Teenwear produkt a naše AI vytvorí vizualizáciu toho, ako by na ňom daný kúsok mohol vyzerať. Celé riešenie sme vyvinuli interne, pretože online móde stále chýba jedna dôležitá vec: možnosť predstaviť si produkt na sebe. Namiesto toho, aby si zákazník skúšal predstaviť outfit podľa modela, uvidí ho priamo na vlastnej fotke. Rozhodovanie je jednoduchšie, rastie istota pred checkoutom a funkcia <strong>podporuje predaj tým, že zákazníkovi pomáha vytvoriť si vzťah k produktu ešte pred nákupom</strong>.',
+        matchlyStatus: 'Vo vývoji',
+        podcastHeading: 'Pozri si <strong>podcast</strong> so mnou.',
+        startupHeading: 'Buduješ niečo ambiciózne? Rád <strong>pomôžem.</strong>',
+        startupNote: 'Ak buduješ technologický startup s reálnym potenciálom a myslíš si, že viem priniesť hodnotu, <strong>ozvi sa.</strong> Baví ma pomáhať founderom riešiť praktické problémy, formovať produkty, zlepšovať rast a budovať systémy, ktoré sa dajú škálovať. Rád poradím, zapojím sa do spolupráce alebo pomôžem tam, kde to dáva zmysel.',
+        tags: ['Produkt & UX', 'Rast', 'AI & Automatizácia', 'Ecommerce', 'Značka & systémy'],
+        nav: ['Domov', 'O mne', 'Projekty', 'Podcast', 'Spolupráca'],
+        languageLabel: 'Prepnúť jazyk do angličtiny',
+        showMore: 'Zobraziť viac o Danielovi',
+        showLess: 'Zobraziť menej o Danielovi'
+      }
+    };
+
+    const setLanguage = (lang) => {
+      currentLanguage = lang;
+      const t = translations[lang];
+      document.documentElement.lang = lang === 'sk' ? 'sk' : 'en';
+      document.title = t.title;
+
+      document.querySelector('.hero h1').innerHTML = t.heroTitle;
+      document.querySelector('.hero-description').textContent = t.heroDescription;
+      document.querySelector('.hero-meta > span').textContent = t.heroMeta;
+      document.querySelector('#about .about-copy h2').innerHTML = t.aboutHeading;
+
+      const bioParagraphs = document.querySelectorAll('.about-bio p');
+      bioParagraphs[0].innerHTML = t.bioOne;
+      bioParagraphs[1].innerHTML = t.bioTwo;
+
+      document.querySelector('.projects-heading').innerHTML = t.projectsHeading;
+      const cards = document.querySelectorAll('.projects-list .work-card');
+      cards[0].querySelector('.work-card-subtitle').textContent = t.teenwearSubtitle;
+      cards[0].querySelector('.work-card-detail-label').textContent = t.teenwearLabel;
+      cards[0].querySelector('.work-card-detail p').innerHTML = t.teenwearStory;
+      cards[1].querySelector('.work-card-subtitle').textContent = t.sizooSubtitle;
+      cards[1].querySelector('.work-card-detail-label').textContent = t.sizooLabel;
+      cards[1].querySelector('.work-card-detail p').innerHTML = t.sizooStory;
+      cards[2].querySelector('.work-card-subtitle').textContent = t.tryonSubtitle;
+      cards[2].querySelector('.work-card-detail-label').textContent = t.tryonLabel;
+      cards[2].querySelector('.work-card-detail p').innerHTML = t.tryonStory;
+      cards[3].querySelector('.status-pill').textContent = t.matchlyStatus;
+
+      document.querySelectorAll('.work-metric span').forEach((element, index) => {
+        element.textContent = t.metrics[index];
+      });
+
+      document.querySelector('.podcast-heading').innerHTML = t.podcastHeading;
+      document.querySelector('.startup-heading').innerHTML = t.startupHeading;
+      document.querySelector('.startup-note').innerHTML = t.startupNote;
+      document.querySelectorAll('.startup-tag').forEach((element, index) => {
+        element.textContent = t.tags[index];
+      });
+
+      const navLinks = document.querySelectorAll('.mobile-menu a');
+      navLinks.forEach((link, index) => link.setAttribute('aria-label', t.nav[index]));
+
+      const expanded = bioCollapse && bioCollapse.classList.contains('expanded');
+      if (bioToggle) bioToggle.setAttribute('aria-label', expanded ? t.showLess : t.showMore);
+
+      const languageToggle = document.getElementById('languageToggle');
+      languageToggle.setAttribute('aria-label', t.languageLabel);
+      document.querySelectorAll('[data-lang-option]').forEach((option) => {
+        option.classList.toggle('active', option.dataset.langOption === lang);
+      });
+    };
+
     if (bioCollapse && bioToggle) {
       bioToggle.addEventListener('click', () => {
         const expanded = bioCollapse.classList.toggle('expanded');
         bioToggle.setAttribute('aria-expanded', String(expanded));
-        bioToggle.setAttribute('aria-label', expanded ? 'Show less about Daniel' : 'Show more about Daniel');
+        const t = translations[currentLanguage];
+        bioToggle.setAttribute('aria-label', expanded ? t.showLess : t.showMore);
+      });
+    }
+
+    const languageToggle = document.getElementById('languageToggle');
+    if (languageToggle) {
+      languageToggle.addEventListener('click', () => {
+        setLanguage(currentLanguage === 'en' ? 'sk' : 'en');
       });
     }
 
@@ -909,6 +1064,7 @@
     };
     window.addEventListener('scroll', setActiveMenu, { passive: true });
     setActiveMenu();
+    setLanguage('en');
   </script>
 </body>
 </html>
