@@ -235,14 +235,19 @@
     }
 
     .hero-scroll svg,
-    .mobile-menu svg {
-      width: 20px;
-      height: 20px;
+    .mobile-menu svg,
+    .marquee-track svg {
       stroke: currentColor;
       fill: none;
       stroke-width: 1.8;
       stroke-linecap: round;
       stroke-linejoin: round;
+    }
+
+    .hero-scroll svg,
+    .mobile-menu svg {
+      width: 20px;
+      height: 20px;
     }
 
     .hero-scroll:hover {
@@ -266,17 +271,24 @@
     .marquee-track {
       display: flex;
       width: max-content;
-      animation: marquee 26s linear infinite;
+      animation: marquee 28s linear infinite;
     }
 
     .marquee-track span {
-      display: flex;
-      gap: 26px;
+      display: inline-flex;
+      gap: 11px;
       align-items: center;
-      padding: 15px 30px;
+      padding: 15px 27px;
       font-weight: 700;
       font-size: 14px;
-      letter-spacing: .08em;
+      letter-spacing: .075em;
+      white-space: nowrap;
+    }
+
+    .marquee-track svg {
+      width: 19px;
+      height: 19px;
+      flex: 0 0 19px;
     }
 
     @keyframes marquee { to { transform: translateX(-50%); } }
@@ -640,12 +652,27 @@
     @media (max-width: 900px) {
       body { padding-bottom: 98px; }
       .cursor { display: none; }
-      .nav { grid-template-columns: 1fr auto; min-height: 76px; }
-      .nav-links { display: none; }
-      .nav-contact { display: none; }
-      .hero { min-height: calc(100svh - 86px); border-radius: 24px; background-position: center; }
-      .hero-content { grid-template-columns: 1fr; align-items: end; padding: 34px; }
-      .hero-meta { align-items: flex-start; flex-direction: row; justify-content: space-between; }
+      .nav { display: none; }
+
+      .hero-frame { padding-top: 8px; }
+      .hero {
+        min-height: calc(100svh - 16px);
+        border-radius: 24px;
+        background-position: center;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        align-items: end;
+        padding: 34px;
+      }
+
+      .hero-meta {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
       .hero h1 { font-size: clamp(58px, 15vw, 110px); }
 
       .mobile-menu {
@@ -696,14 +723,24 @@
 
     @media (max-width: 600px) {
       :root { --pad: 18px; }
-      .hero-frame { padding: 0 8px 8px; }
-      .hero { border-radius: 20px; background-position: 58% center; }
+
+      .hero-frame { padding: 8px 8px 8px; }
+      .hero {
+        min-height: calc(100svh - 16px);
+        border-radius: 20px;
+        background-position: 58% center;
+      }
+
       .hero-content { padding: 26px 22px; }
       .hero h1 { font-size: 15vw; line-height: .9; }
       .hero-description { font-size: 17px; max-width: 92%; }
       .hero-meta { width: 100%; }
       .hero-meta span { display: none; }
       .hero-scroll { width: 54px; height: 54px; margin-left: auto; }
+
+      .marquee { margin-top: 42px; }
+      .marquee-track span { padding: 14px 22px; font-size: 12px; gap: 9px; }
+      .marquee-track svg { width: 17px; height: 17px; flex-basis: 17px; }
 
       .mobile-menu {
         bottom: 12px;
@@ -799,8 +836,63 @@
 
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
-        <span>FOUNDER</span><span>TEENWEAR</span><span>ECOMMERCE</span><span>AI PRODUCTS</span><span>BRAND</span><span>SYSTEMS</span>
-        <span>FOUNDER</span><span>TEENWEAR</span><span>ECOMMERCE</span><span>AI PRODUCTS</span><span>BRAND</span><span>SYSTEMS</span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          E-COMMERCE
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="m7 7.5 3 2.5M17 7.5 14 10M7 16.5l3-2.5M17 16.5 14 14"/></svg>
+          AI SYSTEMS
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 4V2M20 12h2M12 20v2M4 12H2"/></svg>
+          BRAND STRATEGY
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg>
+          GROWTH
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="m13 2-7 11h6l-1 9 7-12h-6l1-8Z"/></svg>
+          AUTOMATION
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
+          OPERATIONS
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.8 7.5 4.3 7.5-4.3"/><path d="M12 12v9"/></svg>
+          PRODUCT
+        </span>
+
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+          E-COMMERCE
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="m7 7.5 3 2.5M17 7.5 14 10M7 16.5l3-2.5M17 16.5 14 14"/></svg>
+          AI SYSTEMS
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><path d="M12 4V2M20 12h2M12 20v2M4 12H2"/></svg>
+          BRAND STRATEGY
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 2 5-6"/></svg>
+          GROWTH
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="m13 2-7 11h6l-1 9 7-12h-6l1-8Z"/></svg>
+          AUTOMATION
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>
+          OPERATIONS
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.8 7.5 4.3 7.5-4.3"/><path d="M12 12v9"/></svg>
+          PRODUCT
+        </span>
       </div>
     </div>
 
