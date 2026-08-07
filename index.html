@@ -6,7 +6,7 @@
   <meta name="theme-color" content="#f5f5f0" />
   <meta name="description" content="Daniel Susina / founder of Teenwear, ecommerce and AI builder." />
   <title>Daniel Susina</title>
-  <link rel="stylesheet" href="./styles.css?v=6" />
+  <link rel="stylesheet" href="./styles.css?v=7" />
   <style>
     html, body, div, span, p, a, strong, b, em, h1, h2, h3, h4, h5, h6, nav, section, article, footer, button, input, textarea, select {
       font-family: var(--font) !important;
@@ -16,25 +16,40 @@
     #about .about-layout { display: block; }
     #about .about-copy h2 {
       max-width: 1280px;
-      margin: 0;
+      margin: 0 auto;
       font-size: clamp(38px, 4.4vw, 68px);
       line-height: 1.02;
       letter-spacing: -.05em;
       font-weight: 400;
+      text-align: center;
     }
     #about .revenue-highlight {
       font: inherit;
       font-weight: 700;
       color: inherit;
     }
+    .about-photo {
+      width: min(100%, 720px);
+      aspect-ratio: 1 / 1;
+      margin: clamp(34px, 5vw, 68px) auto 0;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #e7e7e2;
+    }
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
     .about-bio {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: clamp(28px, 4vw, 64px);
       max-width: 980px;
-      margin: clamp(32px, 4vw, 58px) 0 0 auto;
-      padding-top: 24px;
-      border-top: 1px solid var(--line);
+      margin: clamp(32px, 4vw, 58px) auto 0;
+      padding-top: 0;
+      border-top: 0;
     }
     .about-bio p {
       font-size: clamp(19px, 1.35vw, 22px);
@@ -52,11 +67,16 @@
         font-size: clamp(31px, 8vw, 44px);
         line-height: 1.04;
       }
+      .about-photo {
+        width: 100%;
+        margin-top: 28px;
+        border-radius: 22px;
+      }
       .about-bio {
         grid-template-columns: 1fr;
         gap: 18px;
         margin-top: 26px;
-        padding-top: 20px;
+        padding-top: 0;
       }
       .about-bio p {
         font-size: 20px;
@@ -139,6 +159,11 @@
       <div class="about-layout reveal">
         <div class="about-copy">
           <h2>I’ve generated over <strong class="revenue-highlight">€1,000,000</strong> in cumulative revenue since I started building businesses.</h2>
+
+          <div class="about-photo">
+            <img src="https://cdn.shopify.com/s/files/1/0685/9060/0494/files/WhatsApp_Image_2026-08-07_at_13.52.52.jpg?v=1786103903" alt="Daniel Susina" loading="lazy" />
+          </div>
+
           <div class="about-bio">
             <p>I started designing websites at <strong>12</strong>, driven mostly by curiosity. Over time, that turned into teaching myself how <strong>digital products, brands and online businesses</strong> actually work by building real things and figuring them out as I went.</p>
             <p>At <strong>18</strong>, I launched <strong>Teenwear</strong>. What began as a small experiment grew into an international ecommerce business and taught me the full stack firsthand, from <strong>sourcing and brand strategy to marketing, operations and customer experience</strong>. Today, I’m focused on scaling Teenwear and building <strong>AI systems and products</strong>.</p>
