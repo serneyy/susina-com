@@ -129,6 +129,19 @@
       letter-spacing: -.06em;
       font-weight: 700;
     }
+    .work-card-logo {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: min(100%, 360px);
+      max-height: 72px;
+      object-fit: contain;
+      object-position: left center;
+    }
+    .work-card-logo.matchly-logo {
+      max-width: min(100%, 300px);
+      max-height: 68px;
+    }
     .work-card-subtitle {
       margin-top: 16px;
       max-width: 670px;
@@ -350,6 +363,14 @@
         font-size: clamp(36px, 11vw, 52px);
         line-height: .96;
       }
+      .work-card-logo {
+        max-width: min(100%, 240px);
+        max-height: 52px;
+      }
+      .work-card-logo.matchly-logo {
+        max-width: min(100%, 220px);
+        max-height: 50px;
+      }
       .work-card-subtitle {
         margin-top: 12px;
         font-size: 18px;
@@ -488,7 +509,7 @@
       <details class="work-card interactive">
         <summary>
           <div class="work-card-main">
-            <h3>Teenwear</h3>
+            <img class="work-card-logo" src="https://cdn.shopify.com/s/files/1/0685/9060/0494/files/logo_black_886d148a-0ee2-4a8b-a33e-4cbe09109651.png?v=1786107916" alt="Teenwear" />
             <p class="work-card-subtitle">A Gen-Z fashion ecommerce business I started at 18 and continue to build and scale.</p>
           </div>
           <div class="work-card-metrics" aria-label="Teenwear 2025 metrics">
@@ -537,7 +558,7 @@
 
       <article class="work-card work-card-simple matchly">
         <div class="work-card-main">
-          <h3>Matchly</h3>
+          <img class="work-card-logo matchly-logo" src="https://cdn.shopify.com/s/files/1/0685/9060/0494/files/16051290-e670-44ed-a4e2-4260566c9065.png?v=1786107933" alt="Matchly" />
         </div>
         <span class="status-pill">In progress</span>
       </article>
