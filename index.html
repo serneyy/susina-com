@@ -80,13 +80,17 @@
     .bio-toggle {
       display: none;
     }
+    .projects-intro {
+      padding: clamp(150px, 16vw, 240px) 0 clamp(120px, 13vw, 200px);
+    }
     .projects-heading {
-      margin: clamp(80px, 9vw, 130px) auto 0;
+      max-width: 1280px;
+      margin: 0 auto;
       text-align: center;
-      font-size: clamp(48px, 7vw, 104px);
-      line-height: .92;
-      letter-spacing: -.06em;
-      font-weight: 400;
+      font-size: clamp(38px, 4.4vw, 68px);
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      font-weight: 700;
     }
     @media (max-width: 600px) {
       #about { padding-top: 18px; padding-bottom: 64px; }
@@ -172,10 +176,14 @@
       .about-bio-collapse.expanded .bio-toggle svg {
         transform: rotate(180deg);
       }
+      .projects-intro {
+        padding: 110px 0 92px;
+      }
       .projects-heading {
-        margin-top: 58px;
-        font-size: clamp(46px, 14vw, 72px);
-        line-height: .94;
+        font-size: clamp(31px, 8vw, 44px);
+        line-height: 1.04;
+        letter-spacing: -.05em;
+        font-weight: 700;
       }
     }
   </style>
@@ -271,10 +279,12 @@
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
             </button>
           </div>
-
-          <h2 class="projects-heading">My Projects</h2>
         </div>
       </div>
+    </section>
+
+    <section class="projects-intro shell reveal" id="projects">
+      <h2 class="projects-heading">My Projects</h2>
     </section>
 
     <section class="section shell" id="numbers">
