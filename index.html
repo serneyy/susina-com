@@ -60,11 +60,27 @@
     #about .about-layout { display: block; }
     #about .about-copy h2 { max-width: 1280px; margin: 0 auto; font-size: clamp(38px, 4.4vw, 68px); line-height: 1.02; letter-spacing: -.05em; font-weight: 400; text-align: center; }
     #about .revenue-highlight { font: inherit; font-weight: 700; color: inherit; }
-    .about-bio-collapse { position: relative; max-width: 980px; margin: clamp(32px, 4vw, 58px) auto 0; }
-    .about-bio { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 4vw, 64px); max-width: 980px; margin: 0; padding-top: 0; border-top: 0; }
-    .about-bio p { font-size: clamp(22px, 1.55vw, 26px); line-height: 1.32; color: var(--ink); letter-spacing: -.035em; font-weight: 400; }
-    .about-bio strong { font-weight: 700; color: var(--ink); }
-    .bio-toggle { display: none; }
+
+    .about-accordion { max-width: 1180px; margin: clamp(42px, 5vw, 72px) auto 0; border-top: 1px solid rgba(11,11,11,.2); }
+    .about-accordion-item { border-bottom: 1px solid rgba(11,11,11,.2); }
+    .about-accordion-item summary { list-style: none; cursor: pointer; display: grid; grid-template-columns: minmax(190px,.72fr) minmax(0,1.45fr) 48px; gap: clamp(24px,3vw,48px); align-items: center; padding: clamp(22px,2.5vw,32px) 2px; }
+    .about-accordion-item summary::-webkit-details-marker { display: none; }
+    .about-accordion-title { font-size: clamp(25px,2.5vw,38px); line-height: 1; letter-spacing: -.045em; font-weight: 700; }
+    .about-accordion-teaser { max-width: 680px; font-size: clamp(17px,1.45vw,22px); line-height: 1.3; letter-spacing: -.025em; color: #555550; }
+    .about-accordion-toggle { width: 46px; height: 46px; border: 1px solid rgba(11,11,11,.8); border-radius: 50%; display: grid; place-items: center; justify-self: end; background: transparent; transition: transform .3s ease, background .25s ease; }
+    .about-accordion-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .32s ease; }
+    .about-accordion-item[open] .about-accordion-toggle { background: var(--accent); }
+    .about-accordion-item[open] .about-accordion-toggle svg { transform: rotate(180deg); }
+    .about-accordion-content { display: grid; grid-template-columns: minmax(190px,.72fr) minmax(0,1.45fr) 48px; gap: clamp(24px,3vw,48px); padding: 0 2px clamp(30px,3.5vw,48px); }
+    .about-accordion-copy { grid-column: 2 / 3; max-width: 800px; }
+    .about-accordion-copy p { margin: 0; font-size: clamp(19px,1.55vw,24px); line-height: 1.42; letter-spacing: -.03em; color: #30302d; }
+    .about-accordion-copy p + p { margin-top: 18px; }
+    .about-accordion-copy strong { color: var(--ink); font-weight: 700; }
+    @media (hover:hover) and (pointer:fine) {
+      .about-accordion-item summary:hover .about-accordion-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+      .about-accordion-item summary:hover .about-accordion-toggle { background: var(--accent); }
+    }
+
     .projects-intro { padding: clamp(54px, 5.5vw, 86px) 0 clamp(42px, 4.5vw, 66px); }
     .projects-heading { max-width: 1280px; margin: 0 auto; text-align: center; font-size: clamp(38px, 4.4vw, 68px); line-height: 1.02; letter-spacing: -.05em; font-weight: 400; }
     .projects-heading strong { font-weight: 700; }
@@ -128,14 +144,15 @@
       .hero-linkedin svg, .hero-email svg { width: 20px; height: 20px; }
       .hero-linkedin svg { fill: currentColor; }
       .hero-email svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-      .about-bio-collapse { margin-top: 26px; }
-      .about-bio { grid-template-columns: 1fr; gap: 18px; max-height: 222px; overflow: hidden; transition: max-height .5s cubic-bezier(.16,1,.3,1); }
-      .about-bio-collapse:not(.expanded)::after { content: ""; position: absolute; left: 0; right: 0; bottom: 42px; height: 92px; pointer-events: none; background: linear-gradient(to bottom, rgba(245,245,240,0), var(--bg) 82%); }
-      .about-bio-collapse.expanded .about-bio { max-height: 900px; }
-      .about-bio p { font-size: 23px; line-height: 1.32; letter-spacing: -.035em; }
-      .bio-toggle { position: relative; z-index: 2; width: 42px; height: 42px; margin: 4px auto 0; padding: 0; border: 0; border-radius: 50%; display: grid; place-items: center; background: transparent; color: var(--ink); cursor: pointer; }
-      .bio-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; transition: transform .35s ease; }
-      .about-bio-collapse.expanded .bio-toggle svg { transform: rotate(180deg); }
+      .about-accordion { margin-top: 34px; }
+      .about-accordion-item summary { grid-template-columns: 1fr 42px; gap: 8px 14px; padding: 22px 0; align-items: center; }
+      .about-accordion-title { grid-column: 1; grid-row: 1; font-size: 27px; }
+      .about-accordion-teaser { grid-column: 1; grid-row: 2; max-width: 300px; font-size: 15.5px; line-height: 1.35; }
+      .about-accordion-toggle { grid-column: 2; grid-row: 1 / 3; width: 40px; height: 40px; }
+      .about-accordion-content { display: block; padding: 0 0 26px; }
+      .about-accordion-copy { max-width: none; }
+      .about-accordion-copy p { font-size: 18px; line-height: 1.45; }
+      .about-accordion-copy p + p { margin-top: 15px; }
       .projects-intro { padding: 28px 0 34px; }
       .projects-heading { font-size: clamp(31px, 8vw, 44px); line-height: 1.04; letter-spacing: -.05em; }
       .projects-list { gap: 10px; padding-bottom: 92px; }
@@ -207,10 +224,32 @@
 
     <section class="section shell" id="about"><div class="about-layout reveal"><div class="about-copy">
       <h2>I’ve generated over <strong class="revenue-highlight">€800,000</strong> in cumulative revenue since I started building businesses.</h2>
-      <div class="about-bio-collapse" id="aboutBioCollapse"><div class="about-bio" id="aboutBio">
-        <p>When I was <strong>12</strong>, I started designing websites simply because I loved making things on the internet. I had no idea it would become the foundation of my future career. Before long, I was building sites for my <strong>first clients</strong> and earning my <strong>first money</strong> from something I had taught myself.</p>
-        <p>At <strong>18</strong>, I launched <strong>Teenwear.eu</strong> because I wanted to see if I could build an ecommerce store of my own. What started as a small experiment turned into a <strong>global fashion business</strong>. In its first full year, Teenwear generated <strong>€93K in revenue</strong>, then grew to <strong>€205K+ in 2024</strong> and <strong>€431K in 2025</strong>. Along the way, I learned the entire business by doing it myself, from <strong>sourcing and brand strategy to marketing, operations, customer experience and growth systems</strong>. Today, I’m still scaling Teenwear while building new products at the intersection of <strong>ecommerce and AI</strong>.</p>
-      </div><button class="bio-toggle" id="bioToggle" type="button" aria-expanded="false" aria-controls="aboutBio" aria-label="Show more about Daniel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div>
+
+      <div class="about-accordion" id="aboutAccordion">
+        <details class="about-accordion-item interactive">
+          <summary>
+            <span class="about-accordion-title">About me</span>
+            <span class="about-accordion-teaser">How a 12-year-old web obsession turned into the way I build today.</span>
+            <span class="about-accordion-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="about-accordion-content"><div class="about-accordion-copy">
+            <p>When I was <strong>12</strong>, I started designing websites simply because I loved making things on the internet. I had no idea it would become the foundation of my future career. Before long, I was building sites for my <strong>first clients</strong> and earning my <strong>first money</strong> from something I had taught myself.</p>
+            <p>At <strong>18</strong>, I launched <strong>Teenwear.eu</strong> because I wanted to see if I could build an ecommerce store of my own. What started as a small experiment turned into a <strong>global fashion business</strong>. In its first full year, Teenwear generated <strong>€93K in revenue</strong>, then grew to <strong>€205K+ in 2024</strong> and <strong>€431K in 2025</strong>. Along the way, I learned the entire business by doing it myself, from <strong>sourcing and brand strategy to marketing, operations, customer experience and growth systems</strong>. Today, I’m still scaling Teenwear while building new products at the intersection of <strong>ecommerce and AI</strong>.</p>
+          </div></div>
+        </details>
+
+        <details class="about-accordion-item interactive">
+          <summary>
+            <span class="about-accordion-title">Why I build</span>
+            <span class="about-accordion-teaser">The money was never the interesting part.</span>
+            <span class="about-accordion-toggle" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></span>
+          </summary>
+          <div class="about-accordion-content"><div class="about-accordion-copy">
+            <p>I don’t build because I’m chasing a number in a bank account. I build because I genuinely enjoy taking an idea that exists only in my head and turning it into something real, then obsessing over the details until it works better than it did yesterday. That has been the pattern since I was a kid: websites, random projects and eventually Teenwear.</p>
+            <p><strong>Money matters because it gives a business fuel to grow, but it has never been the part I find most exciting.</strong> What keeps me interested is solving problems, seeing people actually use something I built and finding out how far an idea can go when I keep improving it. If I only cared about money, I probably wouldn’t spend so much time building things that are hard, uncertain and might not work at all.</p>
+          </div></div>
+        </details>
+      </div>
     </div></div></section>
 
     <section class="projects-intro shell reveal" id="projects"><h2 class="projects-heading">What I’m <strong>Building</strong></h2></section>
@@ -241,32 +280,30 @@
     const hero = document.querySelector('.hero');
     window.addEventListener('scroll', () => { const y = window.scrollY; if (hero && y < window.innerHeight * 1.1) hero.style.backgroundPosition = `center calc(50% + ${y * 0.055}px)`; }, { passive: true });
 
-    const bioCollapse = document.getElementById('aboutBioCollapse');
-    const bioToggle = document.getElementById('bioToggle');
     let currentLanguage = 'en';
 
     const translations = {
       en: {
         title: 'Daniel Susina | Ecommerce & AI Entrepreneur', heroTitle: '<span><b>Hi, I’m</b></span><span><b>Daniel.</b></span>', heroDescription: 'I’m a 21-year-old entrepreneur building in ecommerce and AI, focused on brand, growth, systems and ideas that can scale.', heroMeta: 'Founder of Teenwear / 2026',
         aboutHeading: 'I’ve generated over <strong class="revenue-highlight">€800,000</strong> in cumulative revenue since I started building businesses.',
-        bioOne: 'When I was <strong>12</strong>, I started designing websites simply because I loved making things on the internet. I had no idea it would become the foundation of my future career. Before long, I was building sites for my <strong>first clients</strong> and earning my <strong>first money</strong> from something I had taught myself.',
-        bioTwo: 'At <strong>18</strong>, I launched <strong>Teenwear.eu</strong> because I wanted to see if I could build an ecommerce store of my own. What started as a small experiment turned into a <strong>global fashion business</strong>. In its first full year, Teenwear generated <strong>€93K in revenue</strong>, then grew to <strong>€205K+ in 2024</strong> and <strong>€431K in 2025</strong>. Along the way, I learned the entire business by doing it myself, from <strong>sourcing and brand strategy to marketing, operations, customer experience and growth systems</strong>. Today, I’m still scaling Teenwear while building new products at the intersection of <strong>ecommerce and AI</strong>.',
+        aboutMeTitle: 'About me', aboutMeTeaser: 'How a 12-year-old web obsession turned into the way I build today.', aboutMeBody: '<p>When I was <strong>12</strong>, I started designing websites simply because I loved making things on the internet. I had no idea it would become the foundation of my future career. Before long, I was building sites for my <strong>first clients</strong> and earning my <strong>first money</strong> from something I had taught myself.</p><p>At <strong>18</strong>, I launched <strong>Teenwear.eu</strong> because I wanted to see if I could build an ecommerce store of my own. What started as a small experiment turned into a <strong>global fashion business</strong>. In its first full year, Teenwear generated <strong>€93K in revenue</strong>, then grew to <strong>€205K+ in 2024</strong> and <strong>€431K in 2025</strong>. Along the way, I learned the entire business by doing it myself, from <strong>sourcing and brand strategy to marketing, operations, customer experience and growth systems</strong>. Today, I’m still scaling Teenwear while building new products at the intersection of <strong>ecommerce and AI</strong>.</p>',
+        whyTitle: 'Why I build', whyTeaser: 'The money was never the interesting part.', whyBody: '<p>I don’t build because I’m chasing a number in a bank account. I build because I genuinely enjoy taking an idea that exists only in my head and turning it into something real, then obsessing over the details until it works better than it did yesterday. That has been the pattern since I was a kid: websites, random projects and eventually Teenwear.</p><p><strong>Money matters because it gives a business fuel to grow, but it has never been the part I find most exciting.</strong> What keeps me interested is solving problems, seeing people actually use something I built and finding out how far an idea can go when I keep improving it. If I only cared about money, I probably wouldn’t spend so much time building things that are hard, uncertain and might not work at all.</p>',
         projectsHeading: 'What I’m <strong>Building</strong>', teenwearSubtitle: 'A Gen-Z fashion business I launched at 18 that grew from a small ecommerce experiment into an international brand.', metrics: ['2025 revenue','Net profit','Net margin','YoY growth'], teenwearLabel: 'The story',
         teenwearStory: '<strong>Teenwear started in December 2022 with a simple question: could I build an ecommerce brand from scratch?</strong> I launched it at 18 and ended up learning every part of the business hands-on, from sourcing and product selection to brand, performance marketing, customer experience, logistics and operations. Revenue reached <strong>€93K in its first full year, €205K+ in 2024 and €431K in 2025</strong>. More than the numbers, Teenwear became the real-world operating system behind everything I know about building, scaling and improving an ecommerce business.',
         sizooSubtitle: 'Teenwear’s AI sizing assistant that turns height, weight and real return feedback into smarter size recommendations.', sizooLabel: 'How it works', sizooStory: '<strong>Sizoo is part of Teenwear and was built to solve one of fashion ecommerce’s most frustrating problems: choosing the wrong size.</strong> A customer enters their height and weight, and the AI recommends the size most likely to fit. But it goes beyond a static size chart. Sizoo is connected to Teenwear’s return portal, where it follows customer feedback and return reasons and uses that real-world data to make future recommendations more precise. The result is a smarter sizing experience that helps customers choose with more confidence and is designed to <strong>reduce size-related returns</strong>.',
         tryonSubtitle: 'An in-house AI experience that lets customers see Teenwear products on themselves before buying.', tryonLabel: 'How it works', tryonStory: '<strong>AI Try-on turns a product page into something personal.</strong> A customer uploads a photo, chooses a Teenwear product and our AI generates a visual of how that piece could look on them. We developed the experience in-house to remove some of the imagination gap from online fashion. Instead of trying to picture an outfit on a model, the customer can picture it on themselves. That makes the decision easier, builds more confidence before checkout and <strong>supports sales by helping customers connect with the product before they buy it</strong>.',
-        matchlyStatus: 'In progress', podcastHeading: 'Watch a <strong>podcast</strong> with me.', startupHeading: 'Building something ambitious? I’m always open to <strong>helping.</strong>', startupNote: 'If you’re building a technology startup with real potential and think I could add value, <strong>reach out.</strong> I enjoy helping founders solve practical problems, shape products, improve growth and build systems that scale. I’m happy to advise, collaborate or jump in where it makes sense.', tags: ['Product & UX','Growth','AI & Automation','Ecommerce','Brand & Systems'], nav: ['Home','About','Projects','Podcast','Collab'], languageLabel: 'Switch language to Slovak', showMore: 'Show more about Daniel', showLess: 'Show less about Daniel'
+        matchlyStatus: 'In progress', podcastHeading: 'Watch a <strong>podcast</strong> with me.', startupHeading: 'Building something ambitious? I’m always open to <strong>helping.</strong>', startupNote: 'If you’re building a technology startup with real potential and think I could add value, <strong>reach out.</strong> I enjoy helping founders solve practical problems, shape products, improve growth and build systems that scale. I’m happy to advise, collaborate or jump in where it makes sense.', tags: ['Product & UX','Growth','AI & Automation','Ecommerce','Brand & Systems'], nav: ['Home','About','Projects','Podcast','Collab'], languageLabel: 'Switch language to Slovak'
       },
       sk: {
         title: 'Daniel Susina | Ecommerce & AI podnikateľ', heroTitle: '<span><b>Ahoj, som</b></span><span><b>Daniel.</b></span>', heroDescription: 'Som 21-ročný podnikateľ, ktorý buduje projekty v ecommerce a AI. Zameriavam sa na značku, rast, systémy a nápady, ktoré sa dajú škálovať.', heroMeta: 'Zakladateľ Teenwear / 2026',
         aboutHeading: 'Od začiatku podnikania som vytvoril kumulatívne tržby viac ako <strong class="revenue-highlight">€800,000</strong>.',
-        bioOne: 'Keď som mal <strong>12 rokov</strong>, začal som navrhovať webstránky jednoducho preto, že ma bavilo tvoriť veci na internete. Vtedy som netušil, že sa z toho raz stane základ mojej kariéry. Netrvalo dlho a robil som weby pre svojich <strong>prvých klientov</strong> a zarábal <strong>prvé peniaze</strong> na niečom, čo som sa naučil úplne sám.',
-        bioTwo: 'V <strong>18 rokoch</strong> som spustil <strong>Teenwear.eu</strong>, pretože som chcel zistiť, či dokážem vybudovať vlastný ecommerce. Z malého experimentu sa postupne stal <strong>medzinárodný fashion biznis</strong>. V prvom celom roku Teenwear dosiahol <strong>tržby €93K</strong>, následne <strong>€205K+ v roku 2024</strong> a <strong>€431K v roku 2025</strong>. Popri tom som sa celý biznis učil priamo v praxi, od <strong>sourcingu a brand stratégie až po marketing, operácie, zákaznícku skúsenosť a systémy rastu</strong>. Dnes Teenwear ďalej škálujem a zároveň budujem nové produkty na pomedzí <strong>ecommerce a AI</strong>.',
+        aboutMeTitle: 'Niečo o mne', aboutMeTeaser: 'Ako sa z webov v 12 rokoch stal spôsob, akým dnes budujem veci.', aboutMeBody: '<p>Keď som mal <strong>12 rokov</strong>, začal som navrhovať webstránky jednoducho preto, že ma bavilo tvoriť veci na internete. Vtedy som netušil, že sa z toho raz stane základ mojej kariéry. Netrvalo dlho a robil som weby pre svojich <strong>prvých klientov</strong> a zarábal <strong>prvé peniaze</strong> na niečom, čo som sa naučil úplne sám.</p><p>V <strong>18 rokoch</strong> som spustil <strong>Teenwear.eu</strong>, pretože som chcel zistiť, či dokážem vybudovať vlastný ecommerce. Z malého experimentu sa postupne stal <strong>medzinárodný fashion biznis</strong>. V prvom celom roku Teenwear dosiahol <strong>tržby €93K</strong>, následne <strong>€205K+ v roku 2024</strong> a <strong>€431K v roku 2025</strong>. Popri tom som sa celý biznis učil priamo v praxi, od <strong>sourcingu a brand stratégie až po marketing, operácie, zákaznícku skúsenosť a systémy rastu</strong>. Dnes Teenwear ďalej škálujem a zároveň budujem nové produkty na pomedzí <strong>ecommerce a AI</strong>.</p>',
+        whyTitle: 'Prečo podnikám', whyTeaser: 'Peniaze nikdy neboli tá najzaujímavejšia časť.', whyBody: '<p>Nepodnikám preto, že naháňam číslo na účte. Baví ma zobrať nápad, ktorý existuje iba v mojej hlave, premeniť ho na niečo reálne a potom riešiť detaily dovtedy, kým to nefunguje lepšie než včera. Tento pattern mám od detstva: weby, rôzne projekty a neskôr Teenwear.</p><p><strong>Peniaze sú dôležité, pretože dávajú biznisu palivo na rast, ale nikdy neboli tá časť, ktorá ma na tom baví najviac.</strong> Najviac ma drží pri tom riešenie problémov, moment keď niekto reálne používa niečo, čo som vytvoril, a zvedavosť, kam až sa dá jeden nápad dostať, keď ho stále zlepšujem. Keby mi išlo iba o peniaze, asi by som netrávil toľko času budovaním vecí, pri ktorých na začiatku vôbec neviem, či budú fungovať.</p>',
         projectsHeading: 'Na čom <strong>pracujem</strong>', teenwearSubtitle: 'Gen-Z fashion biznis, ktorý som spustil v 18 a z malého ecommerce experimentu vyrástol na medzinárodnú značku.', metrics: ['Tržby 2025','Čistý zisk','Čistá marža','Medziročný rast'], teenwearLabel: 'Príbeh',
         teenwearStory: '<strong>Teenwear vznikol v decembri 2022 z jednoduchej otázky: dokážem vybudovať ecommerce značku úplne od nuly?</strong> Spustil som ho v 18 rokoch a veľmi rýchlo som sa ocitol v každej časti biznisu, od sourcingu a výberu produktov až po značku, performance marketing, zákaznícku skúsenosť, logistiku a operácie. Tržby dosiahli <strong>€93K v prvom celom roku, €205K+ v roku 2024 a €431K v roku 2025</strong>. Teenwear však pre mňa nie je len o číslach. Je to reálny systém, na ktorom som sa naučil, ako ecommerce vybudovať, škálovať a každý deň zlepšovať.',
         sizooSubtitle: 'AI sizing asistent Teenwearu, ktorý premieňa výšku, váhu a reálny feedback z vrátení na presnejšie odporúčania veľkostí.', sizooLabel: 'Ako to funguje', sizooStory: '<strong>Sizoo je súčasť Teenwearu a vzniklo preto, aby riešilo jeden z najotravnejších problémov fashion ecommerce: zlú veľkosť.</strong> Zákazník zadá svoju výšku a váhu a AI mu odporučí veľkosť, ktorá mu s najväčšou pravdepodobnosťou sadne. Nie je to však iba inteligentnejšia size guide. Sizoo je napojené na Teenwear return portal, sleduje feedback zákazníkov aj dôvody vrátenia a tieto reálne dáta využíva na ďalšie spresňovanie odporúčaní. Výsledkom je jednoduchší výber veľkosti, väčšia istota pred nákupom a systém navrhnutý tak, aby <strong>znižoval počet vrátení kvôli nesprávnej veľkosti</strong>.',
         tryonSubtitle: 'Naše vlastné AI riešenie, vďaka ktorému si zákazník môže pozrieť Teenwear produkt priamo na sebe ešte pred nákupom.', tryonLabel: 'Ako to funguje', tryonStory: '<strong>AI Try-on mení obyčajnú produktovú stránku na osobný zážitok.</strong> Zákazník nahrá svoju fotku, vyberie si Teenwear produkt a naše AI vytvorí vizualizáciu toho, ako by na ňom daný kúsok mohol vyzerať. Celé riešenie sme vyvinuli interne, pretože online móde stále chýba jedna dôležitá vec: možnosť predstaviť si produkt na sebe. Namiesto toho, aby si zákazník skúšal predstaviť outfit podľa modela, uvidí ho priamo na vlastnej fotke. Rozhodovanie je jednoduchšie, rastie istota pred checkoutom a funkcia <strong>podporuje predaj tým, že zákazníkovi pomáha vytvoriť si vzťah k produktu ešte pred nákupom</strong>.',
-        matchlyStatus: 'Vo vývoji', podcastHeading: 'Pozri si <strong>podcast</strong> so mnou.', startupHeading: 'Buduješ niečo ambiciózne? Rád <strong>pomôžem.</strong>', startupNote: 'Ak buduješ technologický startup s reálnym potenciálom a myslíš si, že viem priniesť hodnotu, <strong>ozvi sa.</strong> Baví ma pomáhať founderom riešiť praktické problémy, formovať produkty, zlepšovať rast a budovať systémy, ktoré sa dajú škálovať. Rád poradím, zapojím sa do spolupráce alebo pomôžem tam, kde to dáva zmysel.', tags: ['Produkt & UX','Rast','AI & Automatizácia','Ecommerce','Značka & systémy'], nav: ['Domov','O mne','Projekty','Podcast','Spolupráca'], languageLabel: 'Prepnúť jazyk do angličtiny', showMore: 'Zobraziť viac o Danielovi', showLess: 'Zobraziť menej o Danielovi'
+        matchlyStatus: 'Vo vývoji', podcastHeading: 'Pozri si <strong>podcast</strong> so mnou.', startupHeading: 'Buduješ niečo ambiciózne? Rád <strong>pomôžem.</strong>', startupNote: 'Ak buduješ technologický startup s reálnym potenciálom a myslíš si, že viem priniesť hodnotu, <strong>ozvi sa.</strong> Baví ma pomáhať founderom riešiť praktické problémy, formovať produkty, zlepšovať rast a budovať systémy, ktoré sa dajú škálovať. Rád poradím, zapojím sa do spolupráce alebo pomôžem tam, kde to dáva zmysel.', tags: ['Produkt & UX','Rast','AI & Automatizácia','Ecommerce','Značka & systémy'], nav: ['Domov','O mne','Projekty','Podcast','Spolupráca'], languageLabel: 'Prepnúť jazyk do angličtiny'
       }
     };
 
@@ -279,8 +316,15 @@
       document.querySelector('.hero-description').textContent = t.heroDescription;
       document.querySelector('.hero-meta > span').textContent = t.heroMeta;
       document.querySelector('#about .about-copy h2').innerHTML = t.aboutHeading;
-      const bioParagraphs = document.querySelectorAll('.about-bio p');
-      bioParagraphs[0].innerHTML = t.bioOne; bioParagraphs[1].innerHTML = t.bioTwo;
+
+      const aboutItems = document.querySelectorAll('.about-accordion-item');
+      aboutItems[0].querySelector('.about-accordion-title').textContent = t.aboutMeTitle;
+      aboutItems[0].querySelector('.about-accordion-teaser').textContent = t.aboutMeTeaser;
+      aboutItems[0].querySelector('.about-accordion-copy').innerHTML = t.aboutMeBody;
+      aboutItems[1].querySelector('.about-accordion-title').textContent = t.whyTitle;
+      aboutItems[1].querySelector('.about-accordion-teaser').textContent = t.whyTeaser;
+      aboutItems[1].querySelector('.about-accordion-copy').innerHTML = t.whyBody;
+
       document.querySelector('.projects-heading').innerHTML = t.projectsHeading;
       const cards = document.querySelectorAll('.projects-list .work-card');
       cards[0].querySelector('.work-card-subtitle').textContent = t.teenwearSubtitle; cards[0].querySelector('.work-card-detail-label').textContent = t.teenwearLabel; cards[0].querySelector('.work-card-detail p').innerHTML = t.teenwearStory;
@@ -293,8 +337,6 @@
       document.querySelector('.startup-note').innerHTML = t.startupNote;
       document.querySelectorAll('.startup-tag').forEach((element,index) => element.textContent = t.tags[index]);
       document.querySelectorAll('.mobile-menu a').forEach((link,index) => link.setAttribute('aria-label', t.nav[index]));
-      const expanded = bioCollapse && bioCollapse.classList.contains('expanded');
-      if (bioToggle) bioToggle.setAttribute('aria-label', expanded ? t.showLess : t.showMore);
       const languageToggle = document.getElementById('languageToggle');
       languageToggle.setAttribute('aria-label', t.languageLabel);
       document.querySelectorAll('[data-lang-option]').forEach((option) => option.classList.toggle('active', option.dataset.langOption === lang));
@@ -318,7 +360,13 @@
       }
     };
 
-    if (bioCollapse && bioToggle) bioToggle.addEventListener('click', () => { const expanded = bioCollapse.classList.toggle('expanded'); bioToggle.setAttribute('aria-expanded', String(expanded)); const t = translations[currentLanguage]; bioToggle.setAttribute('aria-label', expanded ? t.showLess : t.showMore); });
+    const aboutAccordionItems = [...document.querySelectorAll('.about-accordion-item')];
+    aboutAccordionItems.forEach((item) => {
+      item.addEventListener('toggle', () => {
+        if (!item.open) return;
+        aboutAccordionItems.forEach((other) => { if (other !== item) other.removeAttribute('open'); });
+      });
+    });
 
     const languageToggle = document.getElementById('languageToggle');
     if (languageToggle) languageToggle.addEventListener('click', () => { const nextLanguage = currentLanguage === 'en' ? 'sk' : 'en'; localStorage.setItem('danielSiteLanguage', nextLanguage); setLanguage(nextLanguage); });
