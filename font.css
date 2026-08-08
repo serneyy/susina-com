@@ -65,7 +65,7 @@ html,body,div,span,p,a,strong,b,em,h1,h2,h3,h4,h5,h6,nav,section,article,footer,
   .about-accordion-item:first-child{padding-bottom:54px!important}
   .about-accordion-item:first-child>summary{width:42px!important;height:42px!important}
   .about-accordion-toggle{width:42px!important;height:42px!important}
-  .about-accordion-content{max-height:176px!important}
+  .about-accordion-content{max-height:150px!important}
   .about-accordion-item[open]>.about-accordion-content{max-height:900px!important}
   .about-accordion-copy{max-width:none!important}
   .about-accordion-copy p{font-size:18px!important;line-height:1.45!important;text-align:center!important}
