@@ -1,6 +1,7 @@
 :root{--font:"Arial Narrow",Arial,sans-serif}
 html,body,div,span,p,a,strong,b,em,h1,h2,h3,h4,h5,h6,nav,section,article,footer,button,input,textarea,select{font-family:var(--font)!important}
 .hero{min-height:90svh!important}
+.marquee{display:none!important}
 .about-photo{display:none!important}
 #about .about-copy h2,.projects-heading,.podcast-heading,.startup-heading{font-size:clamp(42px,6vw,88px)!important;line-height:.98!important;letter-spacing:-.06em!important;font-weight:400!important}
 .podcast-heading{text-align:center!important;margin-left:auto!important;margin-right:auto!important}
