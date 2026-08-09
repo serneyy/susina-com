@@ -1,3 +1,4 @@
+html body .hero{background-image:url("https://cdn.shopify.com/s/files/1/0685/9060/0494/files/WhatsApp_Image_2026-08-08_at_15.32.49.jpg?v=1786291050")!important}
 :root{--font:"Arial Narrow",Arial,sans-serif}
 html,body,div,span,p,a,strong,b,em,h1,h2,h3,h4,h5,h6,nav,section,article,footer,button,input,textarea,select{font-family:var(--font)!important}
 .hero{min-height:90svh!important}
