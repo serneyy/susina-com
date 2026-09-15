@@ -98,3 +98,5 @@ html,body,div,span,p,a,strong,b,em,h1,h2,h3,h4,h5,h6,nav,section,article,footer,
   .startup-linkedin{width:56px!important;height:56px!important}
   .startup-email{min-height:56px!important;padding:0 18px!important;font-size:17px!important}
 }
+
+.work-card.matchly{display:none!important}
